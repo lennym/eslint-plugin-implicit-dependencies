@@ -1,0 +1,27 @@
+{
+  "name": "eslint-plugin-implicit-dependencies",
+  "version": "1.0.0",
+  "description": "eslint plugin to detect implicit dependencies",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lennym/eslint-plugin-implicit-dependencies.git"
+  },
+  "keywords": [
+    "eslint",
+    "eslint-plugin"
+  ],
+  "author": "Leonard Martin <hello@lennym.co.uk>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/lennym/eslint-plugin-implicit-dependencies/issues"
+  },
+  "homepage": "https://github.com/lennym/eslint-plugin-implicit-dependencies#readme",
+  "dependencies": {
+    "builtin-modules": "^1.1.1",
+    "findup": "^0.1.5"
+  }
+}
