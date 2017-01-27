@@ -58,7 +58,7 @@ module.exports = {
 
             // check dependencies
             const opts = context.options[0] || {};
-            if (pkg.dependencies[moduleName]) {
+            if (pkg.dependencies && pkg.dependencies[moduleName]) {
               return;
             } else if (pkg.optionalDependencies && pkg.optionalDependencies[moduleName] && opts.optional) {
               return;
