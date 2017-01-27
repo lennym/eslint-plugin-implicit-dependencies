@@ -34,6 +34,11 @@ module.exports = {
           let moduleName;
           const name = node.arguments[0].value;
 
+          // ignore dynamic arguments
+          if (!name || typeof name !== 'string') {
+            return;
+          }
+
           if (name[0] !== '.' && name[0] !== '/') {
             // if module is a node core module then skip
             if (builtin[name]) {
