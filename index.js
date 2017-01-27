@@ -2,6 +2,6 @@
 
 module.exports = {
   rules: {
-    'no-implicit-dependencies': require('./rules/no-implicit-dependencies')
+    'no-implicit': require('./rules/no-implicit-dependencies')
   }
 };

@@ -19,7 +19,7 @@ Then configure the plugin under the rules section.
 
 ```yaml
 rules:
-  - implicit-dependencies/no-implicit-dependencies: error
+  - implicit-dependencies/no-implicit: error
 ```
 
 ## Options
@@ -29,7 +29,7 @@ By default `implicit-dependencies` will only look for dependencies in the `depen
 
 ```yaml
 rules:
-  - implicit-dependencies/no-implicit-dependencies:
+  - implicit-dependencies/no-implicit:
     - error
     - dev: true
       peer: true
@@ -40,7 +40,7 @@ Or if configuring with javascript:
 
 ```javascript
 rules: {
-  'implicit-dependencies/no-implicit-dependencies': [
+  'implicit-dependencies/no-implicit': [
     'error',
     { peer: true, dev: true, optional: true }
   ]
