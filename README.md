@@ -2,7 +2,7 @@
 
 eslint plugin to detect implicit dependencies
 
-Detects when a module has been required that is not listed as a dependency in the project's package.json.
+Detects when a module has been 'require'd or 'import'ed that is not listed as a dependency in the project's package.json.
 
 This helps prevent accidentally depending on a module that is present in node_modules as a result of being installed further down your dependency tree, but is not listed as an explicit dependency of your project.
 
