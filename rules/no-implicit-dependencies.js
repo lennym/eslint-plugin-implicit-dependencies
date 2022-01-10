@@ -21,17 +21,27 @@ module.exports = {
           },
           dev: {
             type: 'boolean'
-          }
+          },
+
+          ignore: {
+            type: 'array',
+            items: {
+              type: 'string'
+            },
+          },
         },
         additionalProperties: false
       }
     ]
   },
   create: (context) => {
+    const opts = context.options[0] || {};
+
     // find the nearest package.json
     const dir = path.dirname(context.getFilename());
     const jsonPath = path.join(findup.sync(dir, 'package.json'), 'package.json');
     const pkg = require(jsonPath);
+
     const checkModuleName = (name, node) => {
       let moduleName;
 
@@ -52,8 +62,12 @@ module.exports = {
           moduleName = name.split('/')[0];
         }
 
+        // skip modules that are explicitly ignored in the rule's options
+        if (opts.ignore && opts.ignore.includes(moduleName)) {
+          return;
+        }
+
         // check dependencies
-        const opts = context.options[0] || {};
         if (pkg.dependencies && pkg.dependencies[moduleName]) {
           return;
         } else if (pkg.optionalDependencies && pkg.optionalDependencies[moduleName] && opts.optional) {
