@@ -41,15 +41,15 @@ module.exports = {
       }
 
       if (name[0] !== '.' && name[0] !== '/') {
-        // if module is a node core module then skip
-        if (builtin[name]) {
-          return;
-        }
         // parse module name from scope packages and deep requires
         if (name[0] === '@') {
           moduleName = name.split('/').slice(0, 2).join('/');
         } else {
           moduleName = name.split('/')[0];
+        }
+        // if module is a node core module then skip
+        if (builtin[moduleName]) {
+          return;
         }
 
         // check dependencies
