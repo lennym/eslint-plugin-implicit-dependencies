@@ -46,3 +46,25 @@ rules: {
   ]
 }
 ```
+
+### Ignoring packages
+
+To suppress `no-implicit` errors for a particular package, add `ignore` to the rule’s configuration. This can be useful when import aliases are in use, and an import that looks like an npm package is actually local to the source tree:
+
+```yaml
+rules:
+  - implicit-dependencies/no-implicit:
+    - error
+    - ignore: ['src', '@/components']
+```
+
+Or if configuring with javascript:
+
+```javascript
+rules: {
+  'implicit-dependencies/no-implicit': [
+    'error',
+    { ignore: ['src', '@/components'] }
+  ]
+}
+```
