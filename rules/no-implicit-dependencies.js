@@ -21,6 +21,9 @@ module.exports = {
           },
           dev: {
             type: 'boolean'
+          },
+          targetModulesPattern: {
+            type: 'regular expression'
           }
         },
         additionalProperties: false
@@ -52,8 +55,13 @@ module.exports = {
           return;
         }
 
-        // check dependencies
         const opts = context.options[0] || {};
+
+        if (opts.targetModulesPattern && !moduleName.match(opts.targetModulesPattern)) {
+          return;
+        }
+
+        // check dependencies
         if (pkg.dependencies && pkg.dependencies[moduleName]) {
           return;
         } else if (pkg.optionalDependencies && pkg.optionalDependencies[moduleName] && opts.optional) {
