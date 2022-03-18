@@ -22,7 +22,7 @@ module.exports = {
           dev: {
             type: 'boolean'
           },
-          targetModulesPattern: {
+          include: {
             type: 'regular expression'
           }
         },
@@ -57,7 +57,7 @@ module.exports = {
 
         const opts = context.options[0] || {};
 
-        if (opts.targetModulesPattern && !moduleName.match(opts.targetModulesPattern)) {
+        if (opts.include && !moduleName.match(opts.include)) {
           return;
         }
 

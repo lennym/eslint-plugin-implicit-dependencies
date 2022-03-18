@@ -46,3 +46,27 @@ rules: {
   ]
 }
 ```
+
+### Restricting packages
+
+To only assert about missing dependecies on specific packages, add a regular expression to the `include` rule configuration. That way only packages that match the given regex will be evaluated.
+
+For instance, to match packages like `@my_target_module/util`, you could configure as:
+
+```yaml
+rules:
+  - implicit-dependencies/no-implicit:
+    - error
+    - include: /@my_target_module\/.+$/
+```
+
+Or if configuring with javascript:
+
+```javascript
+rules: {
+  'implicit-dependencies/no-implicit': [
+    'error',
+    { include: /@my_target_module\/.+$/ }
+  ]
+}
+```
