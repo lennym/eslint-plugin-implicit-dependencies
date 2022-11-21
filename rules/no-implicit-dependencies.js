@@ -51,6 +51,10 @@ module.exports = {
         if (builtin[moduleName]) {
           return;
         }
+        // if module is a `node:` module, skip that too
+        if (moduleName.startsWith('node:')) {
+          return;
+        }
 
         // check dependencies
         const opts = context.options[0] || {};
