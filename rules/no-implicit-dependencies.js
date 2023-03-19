@@ -1,7 +1,7 @@
 'use strict';
 
 const path = require('path');
-const findup = require('findup');
+const fs = require('fs');
 const builtin = require('builtin-modules').reduce((map, key) => {
   map[key] = true;
   return map;
@@ -30,7 +30,7 @@ module.exports = {
   create: (context) => {
     // find the nearest package.json
     const dir = path.dirname(context.getFilename());
-    const jsonPath = path.join(findup.sync(dir, 'package.json'), 'package.json');
+    const jsonPath = nearestPackageJson(dir);
     const pkg = require(jsonPath);
     const checkModuleName = (name, node) => {
       let moduleName;
@@ -84,3 +84,15 @@ module.exports = {
     };
   }
 };
+
+
+function nearestPackageJson(dir) {
+  let packageJsonFolder = path.resolve(dir);
+  while (packageJsonFolder !== "/" && !fs.existsSync(path.join(packageJsonFolder, "package.json"))) {
+    packageJsonFolder = path.dirname(packageJsonFolder)
+  }
+  if (packageJsonFolder === "/") {
+    throw new Error("Unable to find package.json in directory tree of directory " + dir);
+  }
+  return path.join(packageJsonFolder, "package.json")
+}

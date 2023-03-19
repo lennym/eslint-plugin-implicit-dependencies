@@ -21,7 +21,6 @@
   },
   "homepage": "https://github.com/lennym/eslint-plugin-implicit-dependencies#readme",
   "dependencies": {
-    "builtin-modules": "^1.1.1",
-    "findup": "^0.1.5"
+    "builtin-modules": "^3.3.0"
   }
 }
